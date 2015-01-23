@@ -1,16 +1,16 @@
 (function(window)
 {
-  function parsePath(url)
-	{
-		var slices = url.split("/");
+  function _parsePath(str)
+  {
+    var slices = str.split("/");
 		var pattern = "";
 
-		pattern = url.replace(/:[^\/]+/g,"([^/]+)").replace(/\//g,"\\/");
+		pattern = str.replace(/:[^\/]+/g,"([^/]+)").replace(/\//g,"\\/");
 
 		var match = window.location.pathname.match(pattern);
 
 		if(!match)
-			return {};
+			return;
 
 		var ret = {};
 		var dynamicVar = 0;
@@ -25,6 +25,16 @@
 
 		}
 		return ret;
-	}
-  window.parsePath = parsePath;
+  }
+
+  window.parsePath = function(str, callback)
+	{
+
+		var match = _parsePath(str);
+
+    if(match)
+      callback(match);
+	};
+
+
 })(window)
