@@ -1,0 +1,19 @@
+{
+  "name": "routejs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beogip/route.js.git"
+  },
+  "devDependencies": {
+
+    "karma": "*",
+    "karma-browserstack-launcher": "*",
+    "karma-chrome-launcher": "*",
+    "karma-firefox-launcher": "*",
+    "karma-safari-launcher": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-jasmine": "*"
+  },
+
+  "dependencies": {}
+}

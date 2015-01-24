@@ -1,13 +1,13 @@
 (function(window)
 {
-  function _parsePath(str)
+  function _parsePath(str, pathName)
   {
     var slices = str.split("/");
 		var pattern = "";
 
-		pattern = str.replace(/:[^\/]+/g,"([^/]+)").replace(/\//g,"\\/");
+		pattern = str.replace(/\*/g,".*").replace(/:[^\/]+/g,"([^/]+)").replace(/\//g,"\\/");
 
-		var match = window.location.pathname.match(pattern);
+		var match = pathName.match("^"+pattern+"$");
 
 		if(!match)
 			return;
@@ -27,10 +27,12 @@
 		return ret;
   }
 
-  window.parsePath = function(str, callback)
+  window.route = function(str, pathName, callback)
 	{
+    var callback = typeof pathName == "function" && pathName || callback;
+    var pathName = typeof pathName == "string" && pathName || window.location.pathname;
 
-		var match = _parsePath(str);
+		var match = _parsePath(str, pathName);
 
     if(match)
       callback(match);
