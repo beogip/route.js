@@ -37,7 +37,12 @@ module.exports = function(grunt){
         },
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                banner: '/*! Route.js <%= grunt.template.today("yyyy-mm-dd") %> */\n'+
+                        '/*\n'+
+                        'Route.js 1.0.0 Copyright (c) 2015, Juan Ignacio Gipponi All Rights Reserved.\n'+
+                        'Available via the MIT license.\n'+
+                        'see: http://github.com/beogip/route.js for details\n'+
+                        '*/\n'
             },
             build: {
                 src: ['<%= srcFiles %>'],
@@ -62,7 +67,14 @@ module.exports = function(grunt){
             autoWatch: true
           }
         },
-        clean: ['build'],
+        clean: {
+          build:{
+            src: ['build']
+          },
+          concat: {
+            src: ['build/<%= pkg.name %>.js']
+          }
+        },
         concurrent:{
           options: {
             logConcurrentOutput: true
@@ -83,7 +95,7 @@ module.exports = function(grunt){
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    
+
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
@@ -97,7 +109,7 @@ module.exports = function(grunt){
 
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('prod', ['clean', 'jshint', 'karma:prod', 'uglify', 'concat:prod']);
+    grunt.registerTask('prod', ['clean:build', 'jshint', 'karma:prod', 'uglify', 'concat:prod', 'clean:concat']);
     // Default task(s).
     grunt.registerTask('default', ['concurrent:dev']);
 
