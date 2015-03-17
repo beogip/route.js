@@ -1,9 +1,10 @@
 {
-  "name": "routejs",
+  "name": "route",
   "repository": {
     "type": "git",
     "url": "https://github.com/beogip/route.js.git"
   },
+  "Autor": "Beogip",
   "devDependencies": {
 
     "karma": "*",
@@ -12,7 +13,16 @@
     "karma-firefox-launcher": "*",
     "karma-safari-launcher": "*",
     "karma-phantomjs-launcher": "*",
-    "karma-jasmine": "*"
+    "karma-jasmine": "*",
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-concurrent": "*",
+    "grunt-karma": "*"
   },
 
   "dependencies": {}

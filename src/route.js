@@ -1,5 +1,6 @@
 (function(window)
 {
+  'use strict';
   function _parsePath(str, pathName)
   {
     var slices = str.split("/");
@@ -10,7 +11,9 @@
 		var match = pathName.match("^"+pattern+"$");
 
 		if(!match)
-			return;
+    {
+      return;
+    }
 
 		var ret = {};
 		var dynamicVar = 0;
@@ -29,14 +32,14 @@
 
   window.route = function(str, pathName, callback)
 	{
-    var callback = typeof pathName == "function" && pathName || callback;
-    var pathName = typeof pathName == "string" && pathName || window.location.pathname;
+    callback = typeof pathName == "function" && pathName || callback;
+    pathName = typeof pathName == "string" && pathName || window.location.pathname;
 
 		var match = _parsePath(str, pathName);
 
     if(match)
+    {
       callback(match);
+    }
 	};
-
-
-})(window)
+})(window);

@@ -1,24 +1,25 @@
-'use strict';
-
+/* globals route */
 describe('routejs', function()
 {
+  'use strict';
   var checker;
 
   beforeEach(function()
   {
     checker = {
-      callback: function(data)
+      callback: function()
       {
 
       }
-    }
+    };
   });
 
   it('should get "foo" from the url "/foo" with the pattern "/:id"', function()
   {
-    checker.callback = function(data){
+    checker.callback = function(data)
+    {
       expect(data.id).toEqual("foo");
-    }
+    };
 
     spyOn(checker, "callback").and.callThrough();
 
@@ -29,9 +30,10 @@ describe('routejs', function()
 
   it('should get only "foo" from the url "/foo/var" with the pattern "/:id/var"', function()
   {
-    checker.callback = function(data){
+    checker.callback = function(data)
+    {
       expect(data.id).toEqual("foo");
-    }
+    };
 
     spyOn(checker, "callback").and.callThrough();
 
@@ -42,10 +44,11 @@ describe('routejs', function()
 
   it('should get "foo" and "var" from the url "/foo/var" with the pattern /:id/:name', function()
   {
-    checker.callback = function(data){
+    checker.callback = function(data)
+    {
       expect(data.id).toEqual("foo");
       expect(data.name).toEqual("var");
-    }
+    };
 
     spyOn(checker, "callback").and.callThrough();
 
@@ -56,9 +59,10 @@ describe('routejs', function()
 
   it('should get "foo" from url "/:id/*" with pattern "/:id/*"', function()
   {
-    checker.callback = function(data){
+    checker.callback = function(data)
+    {
       expect(data.id).toEqual("foo");
-    }
+    };
 
     spyOn(checker, "callback").and.callThrough();
 
@@ -68,9 +72,10 @@ describe('routejs', function()
 
   it('shouldn\'t get any value from the url "/foo/var" with the pattern "/foo/var"', function()
   {
-    checker.callback = function(data){
+    checker.callback = function(data)
+    {
       expect(data).toEqual({});
-    }
+    };
 
     spyOn(checker, "callback").and.callThrough();
 
