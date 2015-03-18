@@ -30,7 +30,7 @@
 		return ret;
   }
 
-  window.route = function(str, pathName, callback)
+  var route = function(str, pathName, callback)
 	{
     callback = typeof pathName == "function" && pathName || callback;
     pathName = typeof pathName == "string" && pathName || window.location.pathname;
@@ -42,4 +42,13 @@
       callback(match);
     }
 	};
+
+  window.route = route;
+  
+  if ( typeof define === "function" && define.amd )
+  {
+    define( "route", [], function () { return route; } );
+  }
+
+
 })(window);
